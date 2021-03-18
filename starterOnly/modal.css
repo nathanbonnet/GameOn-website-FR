@@ -489,6 +489,7 @@ footer {
 .errorMessage {
   color: red;
   font-size: 10px;
+  display: flex;
 }
 
 @media screen and (max-width: 800px) {

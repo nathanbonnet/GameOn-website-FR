@@ -113,6 +113,7 @@
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <span id="error"></span>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
@@ -123,6 +124,7 @@
                   id="location1"
                   name="location"
                   value="New York"
+                  
                 />
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
@@ -184,6 +186,7 @@
                   Portland</label
                 >
               </div>
+              <span id="error_location"></span>
 
               <div
                 class="formData">
@@ -198,6 +201,7 @@
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
+                <span id="error_checked"></span>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
