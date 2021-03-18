@@ -38,13 +38,12 @@ function checkSubmit() {
   let date = document.getElementById("birthdate");
   let quantity = document.getElementById("quantity");
   let checkbox = document.getElementById("checkbox1");
-  // let checkbox1 = document.getElementById("location1");
-  // let checkbox2 = document.getElementById("location2");
-  // let checkbox3 = document.getElementById("location3");
-  // let checkbox4 = document.getElementById("location4");
-  // let checkbox5 = document.getElementById("location5");
-  // let checkbox6 = document.getElementById("location6");
-  // let checkboxLocation = [checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6];
+  let checkbox1 = document.getElementById("location1");
+  let checkbox2 = document.getElementById("location2");
+  let checkbox3 = document.getElementById("location3");
+  let checkbox4 = document.getElementById("location4");
+  let checkbox5 = document.getElementById("location5");
+  let checkbox6 = document.getElementById("location6");
 
   let isEmptyPrenom = checkEmpty(prenom);
   let isEmptyNom = checkEmpty(nom);
@@ -52,8 +51,9 @@ function checkSubmit() {
   let isValidDate = checkDate(date);
   let isquantity = checkQuantity(quantity);
   let ischeckbox = checkCheckbox(checkbox);
+  let isCheckLocation = checkboxLocation(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6);
 
-  if (!isEmptyPrenom && !isEmptyNom && isValidEmail && isValidDate && !isquantity && !ischeckbox) {
+  if (!isEmptyPrenom && !isEmptyNom && isValidEmail && isValidDate && !isquantity && !ischeckbox && isCheckLocation) {
     let form = {
       prenom: prenom.value,
       nom: nom.value,
@@ -61,6 +61,12 @@ function checkSubmit() {
       date: date.value,
       quantity: quantity.value,
       checkbox: checkbox.value,
+      checkbox1: checkbox1.value,
+      checkbox2: checkbox2.value,
+      checkbox3: checkbox3.value,
+      checkbox4: checkbox4.value,
+      checkbox5: checkbox5.value,
+      checkbox6: checkbox6.value,
     }
 
     launchModalConfirmation();
@@ -91,17 +97,29 @@ function checkQuantity(input) {
   }
 }
 
+function checkboxLocation(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
+  if (!checkbox1.checked && !checkbox2.checked && !checkbox3.checked && !checkbox4.checked && !checkbox5.checked && !checkbox6.checked) {
+    let errorMessage = document.getElementById("error_location")
+    errorMessage.textContent = `veuillez selectionner une ville`;
+    errorMessage.setAttribute("class", "errorMessage")
+    return false
+  } else {
+    let errorMessage = document.getElementById("error_location")
+    errorMessage.textContent = ``;
+    errorMessage.setAttribute("class", "")
+    return true
+  }
+}
+
 // check si la checkbox des conditions d'utilisation est check
 function checkCheckbox(checkbox) {
   const errorMessage = document.getElementById("error_checked");
   if (!checkbox.checked) {
     errorMessage.textContent = `veuillez cocher les conditions d'utilisation`;
     errorMessage.setAttribute("class", "errorMessage")
-    console.log("not checked");
     return true
   } else {
     errorMessage.textContent = ``;
-    console.log("checked");
     return false
   }
 }
