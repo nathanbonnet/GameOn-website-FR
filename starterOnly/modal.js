@@ -30,13 +30,13 @@ let fermer = document.getElementById("close");
 fermer.addEventListener("click", closeModal);
 
 // verif form
-
 function checkSubmit() {
   let prenom = document.getElementById("prenom");
   let nom = document.getElementById("nom");
   let email = document.getElementById("email");
   let date = document.getElementById("birthdate");
   let quantity = document.getElementById("quantity");
+  // recupére toutes les checkboxs des villes
   let checkbox = document.getElementById("checkbox1");
   let checkbox1 = document.getElementById("location1");
   let checkbox2 = document.getElementById("location2");
@@ -45,6 +45,7 @@ function checkSubmit() {
   let checkbox5 = document.getElementById("location5");
   let checkbox6 = document.getElementById("location6");
 
+  // récupere la valeur de chaque fonction
   let isEmptyPrenom = checkEmpty(prenom);
   let isEmptyNom = checkEmpty(nom);
   let isValidEmail = checkEmail(email);
@@ -53,6 +54,7 @@ function checkSubmit() {
   let ischeckbox = checkCheckbox(checkbox);
   let isCheckLocation = checkboxLocation(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6);
 
+  // vérifie si les conditions son respecté et si oui alors ça lance la modal de confirmation
   if (!isEmptyPrenom && !isEmptyNom && isValidEmail && isValidDate && !isquantity && !ischeckbox && isCheckLocation) {
     let form = {
       prenom: prenom.value,
@@ -85,7 +87,6 @@ function checkQuantity(input) {
   const regex = /\S+/;
   let error = document.getElementById(input.name)
   const errorMessage = document.getElementById("error");
-  console.log(input.value);
   if (!regex.test(input.value)) {
     errorMessage.textContent = `veuillez indiquer le nombre de tournois auquel vous avez participé et re cliquer sur le bouton`;
     errorMessage.setAttribute("class", "errorMessage")
@@ -97,6 +98,7 @@ function checkQuantity(input) {
   }
 }
 
+// check si au moins une ville est séléctionné
 function checkboxLocation(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
   if (!checkbox1.checked && !checkbox2.checked && !checkbox3.checked && !checkbox4.checked && !checkbox5.checked && !checkbox6.checked) {
     let errorMessage = document.getElementById("error_location")
