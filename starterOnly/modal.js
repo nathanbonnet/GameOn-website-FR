@@ -38,12 +38,6 @@ function checkSubmit() {
   let quantity = document.getElementById("quantity");
   // recupére toutes les checkboxs des villes
   let checkbox = document.getElementById("checkbox1");
-  let checkbox1 = document.getElementById("location1");
-  let checkbox2 = document.getElementById("location2");
-  let checkbox3 = document.getElementById("location3");
-  let checkbox4 = document.getElementById("location4");
-  let checkbox5 = document.getElementById("location5");
-  let checkbox6 = document.getElementById("location6");
 
   // récupere la valeur de chaque fonction
   let isEmptyPrenom = checkEmpty(prenom);
@@ -52,29 +46,13 @@ function checkSubmit() {
   let isValidDate = checkDate(date);
   let isquantity = checkQuantity(quantity);
   let ischeckbox = checkCheckbox(checkbox);
-  let isCheckLocation = checkboxLocation(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6);
+  let isCheckLocation = checkboxLocation();
 
   // vérifie si les conditions son respecté et si oui alors ça lance la modal de confirmation
   if (!isEmptyPrenom && !isEmptyNom && isValidEmail && isValidDate && !isquantity && !ischeckbox && isCheckLocation) {
-    let form = {
-      prenom: prenom.value,
-      nom: nom.value,
-      email: email.value,
-      date: date.value,
-      quantity: quantity.value,
-      checkbox: checkbox.value,
-      checkbox1: checkbox1.value,
-      checkbox2: checkbox2.value,
-      checkbox3: checkbox3.value,
-      checkbox4: checkbox4.value,
-      checkbox5: checkbox5.value,
-      checkbox6: checkbox6.value,
-    }
 
     launchModalConfirmation();
     closeModal();
-
-    console.log(form)
 
     return true
   } else {
@@ -99,8 +77,15 @@ function checkQuantity(input) {
 }
 
 // check si au moins une ville est séléctionné
-function checkboxLocation(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
-  if (!checkbox1.checked && !checkbox2.checked && !checkbox3.checked && !checkbox4.checked && !checkbox5.checked && !checkbox6.checked) {
+function checkboxLocation() {
+  var cities = document.getElementsByClassName('checkbox-input-location');
+  var checked = false;
+  for (const city of cities) {
+    if (city.checked) {
+      checked = true;
+    }
+  }
+  if (!checked) {
     let errorMessage = document.getElementById("error_location")
     errorMessage.textContent = `veuillez selectionner une ville`;
     errorMessage.setAttribute("class", "errorMessage")
@@ -170,7 +155,6 @@ function checkEmail(input) {
 
 //check si la date de naissance n'est pas vide et si elle correspond au bon format
 function checkDate(input) {
-  console.log(input.value);
   const regexVide = /\S+\S+/;
   const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
   const regexUs = /\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])*/;
