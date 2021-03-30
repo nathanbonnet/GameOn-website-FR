@@ -62,10 +62,10 @@ function checkSubmit() {
 
 // check si l'input n'est pas vide et compte pas les espcaces
 function checkQuantity(input) {
-  const regex = /\S+/;
+  const regex = /\d+/;
   let error = document.getElementById(input.name)
   const errorMessage = document.getElementById("error");
-  if (!regex.test(input.value)) {
+  if (!regex.test(input.value) || input.value < 0) {
     errorMessage.textContent = `veuillez indiquer le nombre de tournois auquel vous avez participé et re cliquer sur le bouton`;
     errorMessage.setAttribute("class", "errorMessage")
     return true
@@ -114,7 +114,7 @@ function checkCheckbox(checkbox) {
 
 // check si l'input n'est pas vide et compte pas les espcaces
 function checkEmpty(input) {
-  const regex = /\S+\S+/;
+  const regex = /[a-z][a-z]+/;
   let error = document.getElementById(input.name)
   const errorMessagePrenom = document.getElementById("errorPrenom");
   const errorMessageNom = document.getElementById("errorNom");
